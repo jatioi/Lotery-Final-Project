@@ -1,16 +1,42 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>App</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
+<head>
+  <title>App</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
-    <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
-  </head>
+  <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+  <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
+</head>
+<!--<title>૮₍ ˶ᵔ ᵕ ᵔ˶ ₎ა~ ~ </title>-->
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container">
+    <span class="navbar-brand logo-text mb-0 h1 font-monospace ">Final Project</span>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item <%= 'active' if controller_name == 'welcome' && action_name == 'index' %>">
+          <%= link_to 'Home', root_path, class: 'nav-link', 'aria-current': 'page' %>
+        </li>
+        <!-- Add more navigation items as needed -->
+      </ul>
+    </div>
+  </div>
+</nav>
 
-  <body>
-    <%= yield %>
-  </body>
+
+<div>
+  <p class="notice alert-danger"><%= notice %></p>
+  <% if flash[:alert] %>
+    <p class="alert alert-danger"><%= flash[:alert] %></p>
+  <% end %>
+
+  <%= yield %>
+</div>
+
+</body>
 </html>
