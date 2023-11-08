@@ -1,6 +1,6 @@
 class Admin::HomeController < ApplicationController
+  before_action :authenticate_admin_user!
 
-  def welcome
-    # Your logic for the admin welcome page here
-  end
+  def index; end
 end
+
