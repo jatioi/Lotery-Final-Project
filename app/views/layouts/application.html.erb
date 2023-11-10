@@ -28,24 +28,25 @@
   </div>
 
 
-  <div class="navbar-right ">
-    <% if user_signed_in? %>
-      <div class="dropdown">
-        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButtonDark" data-bs-toggle="dropdown" aria-expanded="false">
-          <span><i class="fa-solid fa-user"></i> <%= current_user.email %></span>
-        </button>
-        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButtonDark">
-          <li><%= link_to 'Sign out', destroy_user_session_path, class: "dropdown-item", data: { 'turbo-method': :delete } %></li>
-        </ul>
-      </div>
-    <% else %>
-      <div class="text-end"> <!-- Use text-end to align content to the right -->
-        <%= link_to new_user_session_path, class: "btn btn-dark" do %>
-          <i class="fa-solid fa-user"></i> Login
-        <% end %>
-      </div>
-    <% end %>
-  </div>
+<!--  <div class="navbar-right ">-->
+    <%# if user_signed_in? %>
+<!--      <div class="dropdown">-->
+<!--        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButtonDark" data-bs-toggle="dropdown" aria-expanded="false">-->
+<!--          <span><i class="fa-solid fa-user"></i> <%#= current_user.email %></span>-->
+<!--        </button>-->
+<!--        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButtonDark">-->
+<!--          <li><%#= link_to 'Sign out', destroy_user_session_path, class: "dropdown-item", data: { 'turbo-method': :delete } %></li>-->
+<!--        </ul>-->
+<!--      </div>-->
+    <%# else %>
+<!--      <div class="text-end">-->
+        <%#= link_to new_admin_user_session_path, class: "btn btn-dark" do %>
+<!--         <i class="fa-solid fa-user"></i> Login-->
+        <%# end %>
+        <%#= button_to "Sign out", destroy_admin_user_session_path, :method => :delete %>
+<!--      </div>-->
+    <%# end %>
+<!--  </div>-->
 
 </nav>
 
