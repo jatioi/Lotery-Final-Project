@@ -34,7 +34,6 @@ class DeviseCreateUsers < ActiveRecord::Migration[7.0]
       #
 
       t.string :username
-      t.integer :role
       t.string :phone
       t.integer :coins
       t.decimal :total_deposit, precision: 10, scale: 2
