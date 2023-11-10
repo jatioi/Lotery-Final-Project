@@ -1,9 +1,83 @@
-<h1 class="font-monospace">Welcome, Admin!</h1>
-<p>This is the admin welcome page.</p>
+<!--Top Nav-->
+<div class="d-flex flex-row w-90 border justify-content-between" style="height: 50px">
+  <div id="logo" class="d-flex justify-content-center align-items-center border-end" style="width: 300px; min-width: 300px">
+    <span>System Management</span>
+  </div>
 
-<% if admin_user_signed_in? %>
-  <h2 font> Hello bHOSZxs, <%= current_admin_user.email %> </h2>
-  <%= link_to 'Sign out',destroy_admin_user_session_path, data: { 'turbo-method': :delete } %>
-<% else %>
-  <%= link_to 'Sign in', new_admin_user_session_path %>
-<% end %>
+  <div class="d-flex flex-row" style="width: 350px">
+    <div class="w-50 border-start border-end d-flex justify-content-center align-items-center">
+      <span>Change Language</span>
+    </div>
+
+    <div class="dropdown w-50 border-end d-flex justify-content-center align-items-center">
+      <button class="btn btn-dark dropdown-toggle w-100 h-100" type="button" id="dropdownMenu2" data-bs-toggle="dropdown" aria-expanded="false">
+        <%= current_admin_user.username %>
+      </button>
+
+      <ul class="dropdown-menu dropdown-menu-end" style="width: 200px" aria-labelledby="dropdownMenu2">
+        <li><%= link_to 'Profile', "", class:"dropdown-item" %></li>
+        <li><%= link_to 'Sign out', destroy_admin_user_session_path, data: { 'turbo-method': :delete }, class: "dropdown-item" %></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+
+
+<!--side nav-->
+<div class="border-end border" style="width: 300px; height: 90vh;">
+  <div class="d-flex flex-column ">
+    <div class="border-bottom ps-4 d-flex align-items-center" style="min-height: 50px">
+      <%= link_to 'Homepage', "", class: "nav-link" %>
+    </div>
+
+    <div class="accordion" id="accordionPanelsStayOpenExample">
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="panelsStayOpen-headingOne">
+          <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
+            Member Management
+          </button>
+        </h2>
+        <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingOne">
+          <div class="accordion-body">
+            <li>
+              User list
+            </li>
+          </div>
+
+        </div>
+        <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingOne">
+          <div class="accordion-body">
+            <li>
+              List list
+            </li>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="accordion" id="accordionPanelsStayOpenExample">
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="panelsStayOpen-headingTwo">
+          <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
+            Example 2 Management
+          </button>
+        </h2>
+        <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingTwo">
+          <div class="accordion-body">
+            <li>
+              Example 1
+            </li>
+          </div>
+
+        </div>
+        <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingTwo">
+          <div class="accordion-body">
+            <li>
+              example 2
+            </li>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
