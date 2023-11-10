@@ -1,4 +1,9 @@
-
 <h1 class="font-monospace">Welcome, Admin!</h1>
 <p>This is the admin welcome page.</p>
 
+<% if admin_user_signed_in? %>
+  <h2 font> Hello bHOSZxs, <%= current_admin_user.email %> </h2>
+  <%= link_to 'Sign out',destroy_admin_user_session_path, data: { 'turbo-method': :delete } %>
+<% else %>
+  <%= link_to 'Sign in', new_admin_user_session_path %>
+<% end %>
