@@ -1,16 +1,19 @@
 <!-- app/views/admins/sign_in.html.erb -->
-<%= form_tag(admin_sign_in_path, method: :post) do %>
-  <div>
-    <%= label_tag :email %>
-    <%= text_field_tag :email %>
-  </div>
+<%= form_tag(new_admin_user_session_path, method: :post) do %>
+    <div class="mb-3">
+      <%= label_tag :email, "Email address", class: "form-label" %>
+      <%= email_field_tag :email, nil, class: "form-control", id: "exampleInputEmail1", aria: { describedby: "emailHelp" } %>
+      <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+    </div>
+    <div class="mb-3">
+      <%= label_tag :password, "Password", class: "form-label" %>
+      <%= password_field_tag :password, nil, class: "form-control", id: "exampleInputPassword1" %>
+    </div>
+    <div class="mb-3 form-check">
+      <%= check_box_tag :remember_me, 1, false, class: "form-check-input", id: "exampleCheck1" %>
+      <%= label_tag :remember_me, "Check me out", class: "form-check-label", for: "exampleCheck1" %>
+    </div>
+    <%= submit_tag "Submit", class: "btn btn-primary" %>
+  <% end %>
 
-  <div>
-    <%= label_tag :password %>
-    <%= password_field_tag :password %>
-  </div>
 
-  <div>
-    <%= submit_tag "Sign In" %>
-  </div>
-<% end %>

@@ -1,0 +1,22 @@
+<div class="container">
+  <h2>Log in</h2>
+
+  <%= form_for(resource, as: resource_name, url: session_path(resource_name), data: {turbo: false}) do |f| %>
+    <div class="mb-3">
+      <%= f.label :email, "Email address", class: "form-label" %>
+      <%= f.email_field :email, class: "form-control", id: "exampleInputEmail1", aria: { describedby: "emailHelp" } %>
+    </div>
+
+
+    <div class="mb-3">
+      <%= f.label :password, "Password", class: "form-label" %>
+      <%= f.password_field :password, class: "form-control", id: "exampleInputPassword1" %>
+    </div>
+
+
+    <%= f.submit "Submit", class: "btn btn-primary" %>
+
+  <% end %>
+</div>
+
+
