@@ -1,17 +1,9 @@
 Rails.application.routes.draw do
-  devise_for :users
-  # resources :admins, only: [] do
-  #   collection do
-  #     post :sign_in
-  #     get :welcome
-  #   end
-  # end
   constraints(AdminDomainConstraint.new) do
     root "admin/home#index", as: :admin_root
 
     devise_for :users, as: :admin, path: '', controllers: {
       sessions: 'admin/users/sessions',
-      registrations: 'admin/users/registrations'
     }
 
   end
@@ -22,8 +14,8 @@ Rails.application.routes.draw do
     end
 
     devise_for :users, as: :client, path: '', controllers: {
-      sessions: 'admin/users/sessions',
-      registrations: 'admin/users/registrations'
+      sessions: 'client/users/sessions',
+      registrations: 'client/users/registrations'
     }
   end
 
