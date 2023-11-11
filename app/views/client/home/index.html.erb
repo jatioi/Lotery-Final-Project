@@ -1,8 +1,32 @@
-<%= render partial: 'client/nav/nav' %>
+<%= render partial: 'client/shared/nav' %>
 
+<div class="container mb-5">
+  <%= render partial: 'client/shared/carousel' %>
 
-<h1 class="font-monospace">Welcome, CLIENT!</h1>
-<p>This is the Client welcome page.</p>
+  <h5 class="w-100 border  px-4 py-2 mt-2 font-monospace" style="font-size: 15px">Announcement: </h5>
+
+  <div id="winner" class="mt-2">
+    <h6 class="py-2 px-5 border mt-2" style="max-width: 250px"> Winners Feedback</h6>
+
+    <div class="d-flex flex-row justify-content-between w-10" style="min-height: 300px">
+      <% 3.times do |i| %>
+        <%= render partial: 'client/shared/card', locals: { body_text: "image #{i}" } %>
+      <% end %>
+
+      <%= render partial: 'client/shared/card', locals: { body_text: "More ..." } %>
+    </div>
+    <div id="Coming-soon" class="mt-2">
+      <h6 class="py-2 px-5 border mt-2" style="max-width: 250px"> Coming Soon </h6>
+      <div class="d-flex flex-row justify-content-between w-100" style="min-height: 300px">
+        <% 3.times do |i| %>
+          <%= render partial: 'client/shared/card', locals: { body_text: "Image #{i}" } %>
+        <% end %>
+        <%= render partial: 'client/shared/card', locals: { body_text: "More ..." } %>
+      </div>
+    </div>
+  </div>
+</div>
+
 
 
 
