@@ -1,9 +1,8 @@
+<%= render partial: 'client/nav/nav' %>
+
+
 <h1 class="font-monospace">Welcome, CLIENT!</h1>
 <p>This is the Client welcome page.</p>
 
-<% if client_user_signed_in? %>
-  <h3> Hello user, <%= current_client_user.email %> </h3>
-  <%= link_to 'Sign out', destroy_client_user_session_path, data: { 'turbo-method': :delete } %>
-<% else %>
-  <%= link_to 'Sign in', new_client_user_session_path %>
-<% end %>
+
+
