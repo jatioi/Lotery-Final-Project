@@ -1,4 +1,4 @@
-module Address
+class Address
   def self.table_name_prefix
     "address_"
   end
