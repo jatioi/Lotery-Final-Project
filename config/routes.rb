@@ -17,6 +17,8 @@ Rails.application.routes.draw do
       sessions: 'client/users/sessions',
       registrations: 'client/users/registrations'
     }
+
+    get "/me", to: 'client/me#index'
   end
 
 end
