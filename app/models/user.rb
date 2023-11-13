@@ -6,4 +6,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   enum role: { client: 0, admin: 1 }
+  mount_uploader :image, ImageUploader
+
+  has_many :addresses
 end
