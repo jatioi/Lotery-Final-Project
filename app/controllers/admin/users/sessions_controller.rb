@@ -32,7 +32,7 @@ class Admin::Users::SessionsController < Devise::SessionsController
     user = User.find_by(email: params[:admin_user][:email])
 
     unless user && user.admin?
-      flash[:alert] = "Access denied. You must be an admin to access this page."
+      flash[:alert] = I18n.t("devise.failure.invalid", authentication_keys: User.authentication_keys.first)
       redirect_to admin_root_path
     end
   end

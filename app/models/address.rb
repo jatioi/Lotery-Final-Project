@@ -1,7 +1,7 @@
 class Address < ApplicationRecord
-  def self.table_name_prefix
-    "address_"
-  end
+  # def self.table_name_prefix
+  #   "address_"
+  # end
 
   enum genre: { home:0, office:1 }
   validates :name, presence: true
@@ -25,7 +25,7 @@ class Address < ApplicationRecord
 
   def validate_address_count
     if self.user.addresses.count >= 5
-      self.errors.add(:base, "You can't have more than 5 addresses.")
+      self.errors.add(:base, "You can't have more than 5 address.")
       false
     end
   end
