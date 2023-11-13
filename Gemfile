@@ -40,6 +40,10 @@ gem "rest-client"
 
 gem "active_model_serializers"
 
+gem "stimulus-rails"
+
+
+
 # Use Redis adapter to run Action Cable in production
 # gem "redis", "~> 4.0"
 
