@@ -1,0 +1,54 @@
+<%= form_with model: address, url: url, method: method, class: 'form mt-2' do |f| %>
+  <div class="input-group w-100 mb-2">
+    <%= f.label :type, class: 'input-group-text '%>
+    <div class="form-control">
+      <%= f.radio_button :genre, :home, class: 'form-check-input' %>
+      <%= f.label :home, class: 'form-check-label me-2' %>
+      <%= f.radio_button :genre, :office, class: 'form-check-input' %>
+      <%= f.label :office, class: 'form-check-label' %>
+    </div>
+  </div>
+
+  <div class="input-group w-100 mb-2">
+    <%= f.label :region, class: 'input-group-text'%>
+    <%# f.collection_select :address_region_id, [], '', '', class: 'form-select w-100' %>
+    <select class="form-select">
+      <option selected>Choose...</option>
+      <option value="1">One</option>
+      <option value="2">Two</option>
+      <option value="3">Three</option>
+    </select>
+  </div>
+
+  <div class="input-group w-100 mb-2">
+    <%= f.label :province, class: 'input-group-text'%>
+    <%# f.collection_select :address_province_id, [], '', '', class: 'form-select w-100' %>
+    <select class="form-select">
+      <option selected>Choose...</option>
+      <option value="1">One</option>
+      <option value="2">Two</option>
+      <option value="3">Three</option>
+    </select>
+  </div>
+
+  <div class="input-group w-100 mb-2">
+    <%= f.label :city, class: 'input-group-text'%>
+    <%# f.collection_select :address_city_id, [], '', '', class: 'form-select w-100' %>
+    <select class="form-select">
+      <option selected>Choose...</option>
+      <option value="1">One</option>
+      <option value="2">Two</option>
+      <option value="3">Three</option>
+    </select>
+  </div>
+  <%= render partial: 'client/shared/nav' %>
+
+  <div class="container mt-4 mb-5">
+    <div class="d-flex flex-row align-items-center">
+      <%= link_to 'Back', address_index_path, class: "btn btn-primary me-2"%>
+      <span class="fs-3 fw-semibold">Add new address</span>
+    </div>
+
+    <%= render partial: 'form', locals: { address: @address, url: address_path(@address), method: :patch }%>
+  </div>
+<% end %>

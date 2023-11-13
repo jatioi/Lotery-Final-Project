@@ -19,6 +19,9 @@ Rails.application.routes.draw do
     }
 
     get "/me", to: 'client/me#index'
-  end
 
+    resources 'client/address', as: 'address', path: 'address', except: :show
+  end
 end
+
+
