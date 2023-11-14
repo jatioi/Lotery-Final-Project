@@ -9,6 +9,7 @@ function setInitialDefaultValue(name, target) {
 
 // Connects to data-controller="location"
 export default class extends Controller {
+
     static targets = ['selectedRegionId', 'selectedProvinceId', 'selectedCityId', 'selectedBarangayId']
     fetchProvinces() {
         let provinceTarget = this.selectedProvinceIdTarget
@@ -73,3 +74,5 @@ export default class extends Controller {
         })
     }
 }
+
+
