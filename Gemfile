@@ -40,8 +40,9 @@ gem "rest-client"
 
 gem "active_model_serializers"
 
-gem "stimulus-rails"
+gem "rqrcode"
 
+gem "clipboard-rails"
 
 
 # Use Redis adapter to run Action Cable in production

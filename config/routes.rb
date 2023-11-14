@@ -19,6 +19,7 @@ Rails.application.routes.draw do
     }
 
     get "/me", to: 'client/me#index'
+    get "/invite", to: 'client/invite#index'
 
     resources 'client/address', as: 'address', path: 'address', except: [:show, :edit]
   end
