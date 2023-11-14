@@ -13,7 +13,7 @@ Rails.application.routes.draw do
     resources :client do
     end
 
-    devise_for :users, as: :client, path: '', controllers: {
+    devise_for :users, as: :client, controllers: {
       sessions: 'client/users/sessions',
       registrations: 'client/users/registrations'
     }
@@ -22,7 +22,11 @@ Rails.application.routes.draw do
     get "/invite", to: 'client/invite#index'
 
     resources 'client/address', as: 'address', path: 'address', except: [:show, :edit]
+
+
+
   end
+
 
   namespace :api do
     namespace :v1 do
