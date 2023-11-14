@@ -13,9 +13,6 @@ class Client::AddressController < ApplicationController
 
   def create
     @address = current_client_user.addresses.build(address_params)
-  end
-
-  def edit
     if @address.save
       flash[:notice] = "Added new address."
       redirect_to address_index_path
@@ -23,6 +20,7 @@ class Client::AddressController < ApplicationController
       render :new
     end
   end
+
 
   def update
     if params[:commit] == 'Set as default'

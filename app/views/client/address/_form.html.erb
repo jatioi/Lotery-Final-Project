@@ -18,6 +18,17 @@
   </div>
 
   <div class="form-group w-100 mb-2">
+    <%= f.label :phone_number, class: 'form-label' %>
+    <%= f.text_field :phone_number, class: 'form-control', placeholder: '+639#########' %>
+  </div>
+
+  <div class="form-group w-100 mb-4">
+    <%= f.label :remark, class: 'form-label' %>
+    <%= f.text_field :remark, class: 'form-control', placeholder: 'Set remark' %>
+  </div>
+
+
+  <div class="form-group w-100 mb-2">
     <%= f.label :region, class: 'form-label' %>
     <%= f.collection_select :region_id, Address::Region.all, :id, :name, { prompt: 'Please select region' }, class: 'form-control  w-100', data: { location_target: 'selectedRegionId', action: 'change->location#fetchProvinces' } %>  </div>
 
@@ -39,18 +50,8 @@
   </div>
 
   <div class="form-group w-100 mb-2">
-    <%= f.label :name, class: 'form-label' %>
+    <%= f.label :complete_address, class: 'form-label' %>
     <%= f.text_field :name, class: 'form-control', placeholder: 'Set address name' %>
-  </div>
-
-  <div class="form-group w-100 mb-2">
-    <%= f.label :phone_number, class: 'form-label' %>
-    <%= f.text_field :phone_number, class: 'form-control', placeholder: '09#########' %>
-  </div>
-
-  <div class="form-group w-100 mb-4">
-    <%= f.label :remark, class: 'form-label' %>
-    <%= f.text_field :remark, class: 'form-control', placeholder: 'Set remark' %>
   </div>
 
 

@@ -1,4 +1,4 @@
-import { Controller } from "@hotwired/stimulus"
+import {Controller} from "@hotwired/stimulus"
 
 function setInitialDefaultValue(name, target) {
     let option = document.createElement('option')
@@ -9,8 +9,8 @@ function setInitialDefaultValue(name, target) {
 
 // Connects to data-controller="location"
 export default class extends Controller {
-
     static targets = ['selectedRegionId', 'selectedProvinceId', 'selectedCityId', 'selectedBarangayId']
+
     fetchProvinces() {
         let provinceTarget = this.selectedProvinceIdTarget
         $(provinceTarget).empty()
