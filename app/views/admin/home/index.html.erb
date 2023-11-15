@@ -1,85 +1,41 @@
-<!--Top Nav-->
-<div class="d-flex flex-row w-90 border justify-content-between" style="height: 50px">
-  <div id="logo" class="d-flex justify-content-center align-items-center border-end" style="width: 300px; min-width: 300px">
-    <span>System Management</span>
-  </div>
-
-  <div class="d-flex flex-row" style="width: 350px">
-    <div class="w-50 border-start border-end d-flex justify-content-center align-items-center">
-      <span>Change Language</span>
-    </div>
-
-    <div class="dropdown w-50 border-end d-flex justify-content-center align-items-center">
-      <button class="btn btn-dark dropdown-toggle w-100 h-100" type="button" id="dropdownMenu2" data-bs-toggle="dropdown" aria-expanded="false">
-        <%= current_admin_user.username %>
-      </button>
-
-      <ul class="dropdown-menu dropdown-menu-end" style="width: 200px" aria-labelledby="dropdownMenu2">
-        <li><%= link_to 'Profile', "", class:"dropdown-item" %></li>
-        <li><%= link_to 'Sign out', destroy_admin_user_session_path, data: { 'turbo-method': :delete }, class: "dropdown-item" %></li>
-      </ul>
-    </div>
-  </div>
-</div>
+<div class="h-100 w-100">
+<%= render partial: 'admin/shared/nav' %>
+<div class="d-flex flex-row h-100 w-100">
+  <%= render partial: 'admin/shared/side_nav' %>
 
 
+  <div class="p-4 w-80 font-monospace">
+    <h3>Hi, <%= current_admin_user.username %>!</h3>
 
-<!--side shared-->
-<div class="border-end border" style="width: 300px; height: 90vh;">
-  <div class="d-flex flex-column ">
-    <div class="border-bottom ps-4 d-flex align-items-center" style="min-height: 50px">
-      <%= link_to 'Homepage', "", class: "shared-link" %>
-    </div>
+    <h4>List of client users (<%= User.client.count %>)</h4>
+    <div class="w-100 border-bottom mb-2"></div>
+    <div class="d-flex flex-column">
+      <% @client_users.each_with_index do |client, index|%>
+        <a class="form-control border nav-link mb-2 p-2 w-100" data-bs-toggle="collapse" href="#client_detail_<%= index + 1 %>" role="button" aria-expanded="false" aria-controls="collapseExample">
+          <%= index + 1 %>. <%= client.email %>
+        </a>
 
+        <div class="collapse mb-2" id="client_detail_<%= index + 1 %>">
+          <div class="card card-body flex-row column justify-content-between pe-4 border-1">
+            <div class=" list-group d-flex flex">
+              <li>Promoter: <%= client.parent.present? ? client.parent.email : "None" %></li>
+              <li>Phone Number: <%= client.phone.present? ? client.phone : "None" %></li>
+              <li>Total Deposit: <%= client.total_deposit %></li>
+            </div>
 
-    <div class="accordion" id="accordionPanelsStayOpenExample">
-      <div class="accordion-item">
-        <h2 class="accordion-header" id="panelsStayOpen-headingOne">
-          <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
-            Member Management
-          </button>
-        </h2>
-        <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingOne">
-          <div class="accordion-body">
-            <li>
-              User list
-            </li>
-          </div>
+            <div class=" list-group">
+            <li>Children Members: <%= client.children_members.present? ? client.children_members : "None" %></li>
+            <li>Member Total Deposits: <%= client.children.present? ? client.children_total_deposit : "None" %></li>
+            </div>
 
-        </div>
-        <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingOne">
-          <div class="accordion-body">
-            <li>
-              List list
-            </li>
+            <div class="d-flex flex-column list-group">
+              <li>Coins: <%= client.coins %></li>
+              <li>Total Used Coins: Not yet supported</li>
+            </div>
           </div>
         </div>
-      </div>
-    </div>
-    <div class="accordion" id="accordionPanelsStayOpenExample">
-      <div class="accordion-item">
-        <h2 class="accordion-header" id="panelsStayOpen-headingTwo">
-          <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
-            Example 2 Management
-          </button>
-        </h2>
-        <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingTwo">
-          <div class="accordion-body">
-            <li>
-              Example 1
-            </li>
-          </div>
-
-        </div>
-        <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingTwo">
-          <div class="accordion-body">
-            <li>
-              example 2
-            </li>
-          </div>
-        </div>
-      </div>
+      <% end %>
     </div>
   </div>
 </div>
-
+</div>
