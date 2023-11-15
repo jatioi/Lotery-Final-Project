@@ -1,5 +1,6 @@
 
 class Client::AddressController < ApplicationController
+  before_action :authenticate_client_user!
   before_action :set_address, only: [:update, :destroy]
   before_action :get_default_address, only: [:update]
 
