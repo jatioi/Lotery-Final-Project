@@ -13,6 +13,11 @@ class Item < ApplicationRecord
   has_many :categories, through: :item_category_ships
 
   def destroy
-    update(deleted_at: Time.current)
+    if item_category_ships.exists?
+      errors.add(:base, "Cannot delete category with associated items")
+      false
+    else
+      update(deleted_at: Time.current)
+    end
   end
 end

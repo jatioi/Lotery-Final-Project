@@ -8,6 +8,7 @@ Rails.application.routes.draw do
 
     namespace :admin do
       resources :items
+      resources :categories, except: :show
     end
 
   end

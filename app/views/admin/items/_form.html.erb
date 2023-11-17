@@ -34,5 +34,9 @@
   </div>
 
 
+  <div class="mb-3">
+    <%= f.collection_check_boxes :category_ids, Category.all, :id, :name, class: "Select category" %>
+  </div>
+
   <%= f.submit 'Save item', class: 'btn btn-outline-success w-100' %>
 <% end %>

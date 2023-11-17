@@ -1,0 +1,15 @@
+<div class="h-150 w-100px">
+  <%= render partial: 'admin/shared/nav' %>
+
+  <div class="d-flex flex-row h-100 w-100px">
+<%= render partial: 'admin/shared/side_nav' %>
+    <div class="p-4 w-100 mb-4">
+      <div class="d-flex flex-row align-items-center">
+        <%= link_to 'Back', admin_categories_path, class: "btn btn-primary me-2"%>
+        <span class="fs-3 fw-semibold">Create new category</span>
+      </div>
+      <div class="w-100 border-bottom mx-2"></div>
+      <%= render partial: 'form', locals: { category: @category, url: admin_categories_path, method: :post } %>
+    </div>
+  </div>
+</div>

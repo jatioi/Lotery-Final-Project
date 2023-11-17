@@ -8,6 +8,9 @@
     <li class="list-group-item">Quantity = <%= item.quantity %></li>
     <li class="list-group-item">Status = <%= item.status.humanize %></li>
     <li class="list-group-item">created at: <%= item.created_at %></li>
+    <li class="list-group-item">Category: <%= item.categories.pluck(:name).join(', ') %></li>
+
+
   </ul>
   <div class="card-body">
     <%= link_to 'Show', admin_item_path(item), class: 'btn btn-primary btn-sm w-30 mb-2' %>
