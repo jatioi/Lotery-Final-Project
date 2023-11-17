@@ -6,6 +6,10 @@ Rails.application.routes.draw do
       sessions: 'admin/users/sessions',
     }
 
+    namespace :admin do
+      resources :items
+    end
+
   end
 
   constraints(ClientDomainConstraint.new) do
@@ -22,8 +26,6 @@ Rails.application.routes.draw do
     get "/invite", to: 'client/invite#index'
 
     resources 'client/address', as: 'address', path: 'address', except: [:show, :edit]
-
-
 
   end
 
