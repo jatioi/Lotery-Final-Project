@@ -1,0 +1,17 @@
+<div class="card" style="width: 18rem; ">
+  <%= image_tag item.image.url, class: 'card-img-top', style: 'object-fit: cover; max-height: 150px;' if item.image.present? %>
+  <div class="card-body">
+    <h5 class="card-title"><%= item.name %></h5>
+
+  </div>
+  <ul class="list-group list-group-flush font-monospace"><p class="card-text"></p>
+    <li class="list-group-item">Quantity = <%= item.quantity %></li>
+    <li class="list-group-item">Status = <%= item.status.humanize %></li>
+    <li class="list-group-item">created at: <%= item.created_at %></li>
+  </ul>
+  <div class="card-body">
+    <%= link_to 'Show', admin_item_path(item), class: 'btn btn-primary btn-sm w-30 mb-2' %>
+    <%= link_to 'Edit', edit_admin_item_path(item), class: 'btn btn-warning btn-sm w-30 mb-2' %>
+    <%= button_to 'Delete', admin_item_path(item), method: :delete, data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' }, class: 'btn btn-sm btn-danger w-30' %>
+  </div>
+</div>
