@@ -16,6 +16,7 @@ Rails.application.routes.draw do
           post 'cancel'
         end
       end
+      resources :categories, except: :show
     end
 
   end
@@ -34,6 +35,7 @@ Rails.application.routes.draw do
     get "/invite", to: 'client/invite#index'
 
     resources 'client/address', as: 'address', path: 'address', except: [:show, :edit]
+    resources 'client/lottery', as: 'lottery', path: 'lottery', only: [:index]
 
   end
 

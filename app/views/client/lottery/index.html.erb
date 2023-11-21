@@ -1,0 +1,44 @@
+<%= render partial: 'client/shared/nav' %>
+
+<div class="container mb-5">
+  <%= render partial: 'client/shared/carousel' %>
+
+  <div id="button" class="mt-2 w-100">
+    <h6 class="py-2 px-5 border mt-2 text-center"><%= link_to 'Button', '' %></h6>
+  </div>
+
+  <div id="button-category" class="mt-2 w-100">
+    <div id="filter" class="py-2 d-flex flex-row align-items-center m-2 ">
+      <%= link_to 'All', lottery_index_path(commit: 'all'), class: "btn btn-outline-primary rounded-circle me-2 #{'active' if params[:commit] == 'all' || params[:commit].blank?}" %>
+      <div class="d-flex justify-content-between" style="width: 450px">
+      <% @categories.each do |category| %>
+        <%= link_to category.name, lottery_index_path(commit: category.name), class: "btn btn-outline-primary m-auto category-button #{'active' if params[:commit] == category.name}" %>
+      <% end %>
+    </div>
+    </div>
+  </div>
+
+  <section class="d-flex flex-column justify-content-center align-items-center w-100">
+    <div class="row row-cols-2 w-100 mt-2 p-0">
+      <% @items.each do |item| %>
+        <div class="col mb-4 mt-2">
+          <div class="card h-100 w-100">
+            <%= image_tag item.image.url, class: 'card-img-top flex-grow-1', alt: 'Item Image', style: 'object-fit: cover; height: 200px;' if item.image.present? %>
+            <div class="card-body d-flex flex-column justify-content-center">
+              <h5 class="card-title text-center"><%= item.name %></h5>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+
+
+    <div class="d-flex justify-content-end mb-5">
+      <%= link_to 'More ...', '', class: 'nav-link mb-5' if @items.count == 4 %>
+    </div>
+  </section>
+
+
+</div>
+
+
