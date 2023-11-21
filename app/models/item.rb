@@ -7,7 +7,7 @@ class Item < ApplicationRecord
 
 
   mount_uploader :image, ImageUploader
-  # enum status: { inactive: 0, active: 1 }
+  enum status: { inactive: 0, active: 1 }
 
   default_scope { where(deleted_at: nil) }
 
@@ -24,7 +24,7 @@ class Item < ApplicationRecord
 
     event :start do
       transitions from: [:pending, :ended, :cancelled], guard: :before_start, to: :starting, after: :after_start
-      transitions from: :paused, to: :starting, after: :after_start
+      transitions from: :paused, to: :starting
     end
 
     event :pause do
@@ -53,6 +53,47 @@ class Item < ApplicationRecord
     self.quantity -= 1
     self.batch_count += 1
     save!
+  end
+
+
+  def update_quantity_batch_count
+    unless aasm.from_state == :paused
+      update(quantity: quantity - 1, batch_count: batch_count + 1)
+    end
+  end
+
+  def revert_quantity
+    update(quantity: quantity + 1, batch_count: batch_count - 1)
+  end
+
+  def quantity_enough?
+    self.quantity > 0
+  end
+
+  def present_day_less_than_offline_at?
+    Time.current < self.offline_at
+  end
+
+  def is_item_active?
+    self.active?
+  end
+
+  def offline_at_in_future?
+    return true unless offline_at.present? && offline_at < Time.current
+    errors.add(:offline_at, 'must be in the future')
+    false
+  end
+
+  def online_at_before_offline_at?
+    return true unless online_at.present? && online_at <= Time.current && offline_at < online_at
+    errors.add(:online_at, 'must be before offline at date')
+    false
+  end
+
+  def is_start_at_valid?
+    return true if start_at.present? && start_at >= online_at && start_at < offline_at
+    errors.add(:start_at, 'must be between online at and offline at')
+    false
   end
 
 end

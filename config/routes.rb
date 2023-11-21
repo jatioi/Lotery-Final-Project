@@ -8,7 +8,14 @@ Rails.application.routes.draw do
 
     namespace :admin do
       resources :items
-      resources :categories, except: :show
+      resources :items, except: :show do
+        member do
+          post 'start'
+          post 'pause'
+          post 'end'
+          post 'cancel'
+        end
+      end
     end
 
   end
