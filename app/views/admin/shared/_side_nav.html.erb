@@ -5,56 +5,61 @@
       <%= link_to 'Homepage', admin_root_path, class: "nav-link" %>    </div>
 
 
-  <!--  ----->
+    <!--  ----->
 
-  <div class="accordion" id="accordionExample">
-    <div class="accordion-item">
-      <h2 class="accordion-header" id="headingOne">
-        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-          Member Management
-        </button>
-      </h2>
-      <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
-        <div class="accordion-body border-bottom ps-4 d-flex align-items-center">
-          <strong>
-            <%= link_to 'User List', '', class: "nav-link ps-4" %></strong>
-        </div>
-        <div class="accordion-body border-bottom">
-          <strong>
-            <%= link_to 'Item List', admin_items_path, class: "nav-link ps-4" %>
-          </strong>
-        </div>
-        <div class="accordion-body  ">
-          <strong>
-            <%= link_to 'Ticket List', admin_tickets_path, class: "nav-link ps-4" %>
-          </strong>
+    <div class="accordion" id="accordionExample">
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="headingOne">
+          <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+            Member Management
+          </button>
+        </h2>
+        <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+          <div class="accordion-body border-bottom ps-4 d-flex align-items-center">
+            <strong>
+              <%= link_to 'User List', '', class: "nav-link ps-4" %></strong>
+          </div>
+          <div class="accordion-body border-bottom">
+            <strong>
+              <%= link_to 'Item List', admin_items_path, class: "nav-link ps-4" %>
+            </strong>
+          </div>
+          <div class="accordion-body  border-bottom">
+            <strong>
+              <%= link_to 'Ticket List', admin_tickets_path, class: "nav-link ps-4 " %>
+            </strong>
+          </div>
+          <div class="accordion-body  ">
+            <strong>
+              <%= link_to 'Winner List', admin_winner_index_path, class: "nav-link ps-4" %>
+            </strong>
+          </div>
+
         </div>
 
       </div>
-
-    </div>
-    <div class="accordion-item">
-      <h2 class="accordion-header" id="headingTwo">
-        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-          Example 2 Management
-        </button>
-      </h2>
-      <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
-        <div class="accordion-body border-bottom ps-4 d-flex align-items-center">
-          <strong>
-            <%= link_to 'Example 1', '', class: "nav-link ps-4" %>
-          </strong>
-        </div>
-        <div class="accordion-body ">
-          <strong>
-            <%= link_to 'Example 2', '', class: "nav-link ps-4" %>
-          </strong>
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="headingTwo">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+            Example 2 Management
+          </button>
+        </h2>
+        <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+          <div class="accordion-body border-bottom ps-4 d-flex align-items-center">
+            <strong>
+              <%= link_to 'Example 1', '', class: "nav-link ps-4" %>
+            </strong>
+          </div>
+          <div class="accordion-body ">
+            <strong>
+              <%= link_to 'Example 2', '', class: "nav-link ps-4" %>
+            </strong>
+          </div>
         </div>
       </div>
     </div>
+
+
   </div>
-
-
-</div>
 </div>
 

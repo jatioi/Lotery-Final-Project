@@ -20,6 +20,7 @@ class Address < ApplicationRecord
   belongs_to :city
   belongs_to :barangay
   before_save :validate_address_count
+  has_many :users
 
   scope :default, -> { find_by(is_default: true) }
 
