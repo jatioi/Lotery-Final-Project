@@ -17,6 +17,8 @@ Rails.application.routes.draw do
         end
       end
       resources :categories, except: :show
+      resources :tickets, only: :index
+
     end
 
   end

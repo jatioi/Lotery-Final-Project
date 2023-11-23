@@ -17,8 +17,16 @@ class Item < ApplicationRecord
   has_many :winners
   has_many :tickets
 
-  include AASM
+  def destroy
+    if tickets.present?
+      errors.add(:base, "Cannot delete item with associated tickets")
+      false
+    else
+      update(deleted_at: Time.current)
+    end
+  end
 
+  include AASM
   aasm column: :state do
     state :pending, initial: true
     state :starting, :paused, :ended, :cancelled
