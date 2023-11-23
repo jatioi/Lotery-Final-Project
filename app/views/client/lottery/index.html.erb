@@ -12,7 +12,7 @@
       <%= link_to 'All', lottery_index_path(commit: 'all'), class: "btn btn-outline-primary rounded-circle me-2 #{'active' if params[:commit] == 'all' || params[:commit].blank?}" %>
       <div class="d-flex justify-content-between" style="width: 450px">
       <% @categories.each do |category| %>
-        <%= link_to category.name, lottery_index_path(commit: category.name), class: "btn btn-outline-primary m-auto category-button #{'active' if params[:commit] == category.name}" %>
+          <%= link_to category.name, lottery_index_path(category_id: category.id), class: "btn btn-outline-primary m-auto category-button #{'active' if @selected_category == category}" %>
       <% end %>
     </div>
     </div>
@@ -23,7 +23,9 @@
       <% @items.each do |item| %>
         <div class="col mb-4 mt-2">
           <div class="card h-100 w-100">
-            <%= image_tag item.image.url, class: 'card-img-top flex-grow-1', alt: 'Item Image', style: 'object-fit: cover; height: 200px;' if item.image.present? %>
+            <%= link_to lottery_path(item) do %>
+              <%= image_tag item.image.url, style: 'object-fit: cover;', class: 'w-100 h-100' if item.image.present? %>
+            <% end %>
             <div class="card-body d-flex flex-column justify-content-center">
               <h5 class="card-title text-center"><%= item.name %></h5>
             </div>

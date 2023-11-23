@@ -1,0 +1,57 @@
+<%= render partial: 'client/shared/nav' %>
+<% if @ticket&.errors&.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(@ticket.errors.count, "error") %></h2>
+    <ul>
+      <% @ticket.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<div class="container d-flex flex-column justify-content-center mb-5" style="max-width: 900px">
+  <div class="card w-100 mt-2 mb-2">
+    <%= image_tag @item.image.url, class: 'card-img-top w-100' %>
+    <div class="card-body">
+      <h4><%= @item.name %></h4>
+      <div class="progress mt-2">
+        <div class="progress-bar" role="progressbar" style="width: <%= @progress %>%;" aria-valuenow="<%= @progress %>" aria-valuemin="0" aria-valuemax="100"><%= @progress %>%</div>
+      </div>
+    </div>
+  </div>
+
+  <%= form_with url: submit_tickets_path, method: :post, class: 'mb-2' do |f| %>
+    <%= f.hidden_field :item, value: @item.id %>
+    <div class="input-group mb-2" data-controller="ticket">
+      <button class="btn btn-outline-secondary" type="button" data-action="click->ticket#decrease">
+        <i class="fa-solid fa-minus"></i>
+      </button>
+      <%= f.number_field :tickets, class: 'form-control text-center no-arrows', data: {ticket_target: "tickets"}, value: 1 %>
+      <button class="btn btn-outline-secondary" type="button" data-action="click->ticket#increase">
+        <i class="fa-solid fa-plus"></i>
+      </button>
+    </div>
+
+    <%= f.submit 'Submit', class: 'btn btn-warning w-100'%>
+  <% end %>
+
+  <h5 class="card-title">Serial Numbers</h5>
+  <% if current_client_user %>
+    <ul class="list-group list-group-flush">
+      <% current_user_tickets = Ticket.where(user_id: current_client_user.id, item_id: @item.id, batch_count: @item.batch_count) %>
+      <% current_user_tickets.each do |ticket| %>
+        <li class="list-group-item border d-flex justify-content-between align-items-center">
+          <%= ticket.serial_number %>
+          <% if ticket.cancelled? %>
+            <span class="badge bg-danger">Cancelled</span>
+          <% end %>
+        </li>
+      <% end %>
+    </ul>
+  <% end %>
+
+</div>
+
+<div class="row mb-2"></div>
+<div class="row mb-4"></div>

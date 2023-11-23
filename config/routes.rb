@@ -37,7 +37,8 @@ Rails.application.routes.draw do
     get "/invite", to: 'client/invite#index'
 
     resources 'client/address', as: 'address', path: 'address', except: [:show, :edit]
-    resources 'client/lottery', as: 'lottery', path: 'lottery', only: [:index]
+    resources 'client/lottery', as: 'lottery', path: 'lottery', only: [:index, :show, :create]
+   
 
   end
 
