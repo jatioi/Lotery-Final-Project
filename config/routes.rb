@@ -38,7 +38,7 @@ Rails.application.routes.draw do
 
     resources 'client/address', as: 'address', path: 'address', except: [:show, :edit]
     resources 'client/lottery', as: 'lottery', path: 'lottery', only: [:index, :show, :create]
-   
+    resources 'client/tickets', as: 'submit_tickets', path: 'submit_tickets', only: [:create]
 
   end
 

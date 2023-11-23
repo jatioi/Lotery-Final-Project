@@ -15,3 +15,6 @@ application.register("select2", Select2Controller)
 
 import ClipboardController from "./clipboard_controller"
 application.register("clipboard", ClipboardController)
+
+import TicketController from "./ticket_controller"
+application.register("ticket", TicketController)
