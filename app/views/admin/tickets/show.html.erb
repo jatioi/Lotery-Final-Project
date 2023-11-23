@@ -1,0 +1,14 @@
+<%= render partial: 'client/shared/nav' %>
+
+<div class="container d-flex justify-content-center mb-5">
+  <div class="card w-100 mt-2" style="width: 900px">
+    <%= image_tag @item.image.url, class: 'card-img-top w-100' %>
+    <div class="card-body">
+      <h4><%= @item.name %></h4>
+      <div class="progress mt-2">
+        <div class="progress-bar" role="progressbar" style="width: <%= @progress %>%;" aria-valuenow="<%= @progress %>" aria-valuemin="0" aria-valuemax="100"><%= @progress %>%</div>
+      </div>
+    </div>
+  </div>
+
+</div>
