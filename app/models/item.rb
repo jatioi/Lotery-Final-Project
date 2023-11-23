@@ -15,6 +15,7 @@ class Item < ApplicationRecord
 
   has_many :categories, through: :item_category_ships
   has_many :winners
+  has_many :tickets
 
   include AASM
 
@@ -36,7 +37,7 @@ class Item < ApplicationRecord
     end
 
     event :cancel do
-      transitions from: [:starting, :paused], to: :cancelled
+      transitions from: :starting, to: :cancelled, after: [:revert_quantity, :cancel_all_tickets]
     end
   end
 
