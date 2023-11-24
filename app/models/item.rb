@@ -16,7 +16,7 @@ class Item < ApplicationRecord
   has_many :categories, through: :item_category_ships
   has_many :winners
   has_many :tickets
-  has_many +winners
+  has_many :winners
 
   def destroy
     if tickets.present?

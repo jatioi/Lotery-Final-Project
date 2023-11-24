@@ -5,11 +5,11 @@
     <%= render partial: 'admin/shared/side_nav' %>
 
     <div class="p-4 w-100 mb-4 overflow-scroll">
-      <h3>Ticket List</h3>
+      <h3>Winner List</h3>
 
       <div class="w-100 border-bottom my-2"></div>
 
-      <%= form_with url: admin_tickets_path, method: :get, class: 'w-100 form d-flex flex-row align-items-center justify-content-between mb-2', data: { turbo: false } do |f| %>
+      <%= form_with url: admin_winners_path, method: :get, class: 'w-100 form d-flex flex-row align-items-center justify-content-between mb-2', data: { turbo: false } do |f| %>
 
         <div class="form-group w-100 me-2 ">
           <%= f.text_field :serial_number, value: params[:serial_number], placeholder: "Serial_number..." ,class: 'form-control form-control-sm w-100' %>
@@ -30,16 +30,16 @@
         </div>
 
         <div class="form-group me-2 w-100">
-          <%= f.collection_select :state, @states, :to_s, ->(state) { state.to_s.humanize }, {prompt: 'Filter state...', include_blank: false, selected: params[:state]  }, class: 'form-control form-control-sm w-100' %>
+          <%= f.collection_select :state, @states || [], :to_s, ->(state) { state.to_s.humanize }, { prompt: 'Filter state...', include_blank: false } %>
         </div>
 
         <%= f.submit 'Filter', class: 'btn btn-sm btn-primary me-2' %>
-        <%= link_to 'Reset', admin_tickets_path, class: 'btn btn-sm btn-danger' %>
+        <%= link_to 'Reset', admin_winners_path, class: 'btn btn-sm btn-danger' %>
       <% end %>
-      <% if @tickets.present? %>
+      <% if @winners.present? %>
         <div class="d-flex flex-column">
-          <% @tickets.each_with_index do |ticket, index| %>
-            <%= render partial: 'admin/shared/ticket_card', locals: { ticket: ticket, index: index } %>
+          <% @winners.each_with_index do |winners, index| %>
+            <%= render partial: 'admin/shared/ticket_card' %>
           <% end %>
         </div>
       <% end %>

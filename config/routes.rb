@@ -18,7 +18,16 @@ Rails.application.routes.draw do
       end
       resources :categories, except: :show
       resources :tickets, only: :index
-      resources :winner, only: :index
+      resources :winners do
+        member do
+          patch :submit
+          patch :pay
+          patch :ship
+          patch :deliver
+          patch :publish
+          patch :remove_publish
+        end
+      end
 
     end
 
@@ -42,7 +51,6 @@ Rails.application.routes.draw do
     resources 'client/tickets', as: 'submit_tickets', path: 'submit_tickets', only: [:create]
 
   end
-
 
   namespace :api do
     namespace :v1 do
