@@ -45,4 +45,7 @@ class Winner < ApplicationRecord
       transitions from: :published, to: :remove_published
     end
   end
+
+
+
 end

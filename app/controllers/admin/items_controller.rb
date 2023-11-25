@@ -41,6 +41,8 @@ class Admin::ItemsController < ApplicationController
       render :edit, status: :unprocessable_entity
     end
   end
+
+
   def start
 
     if @item.may_start?

@@ -1,27 +1,17 @@
 class Admin::WinnersController < ApplicationController
   before_action :authenticate_admin_user!
-  before_action :set_winner, only: [:claim, :pay, :submit, :ship,:deliver, :share, :publish, :remove_publish]
+  before_action :set_winner, only: :update
 
   def index
-    @admin_user = current_admin_user
-    @items = Item.all
-    @client_users = User.where(role: "client")
-    @winners = Ticket.all
-    @winners = Winner.includes(:item, :user, :ticket).all
+    @states = Winner.aasm.states.map(&:name)
+    @winners = Winner.all.includes(:user, :item, :ticket, address: [:city, :province])
 
-    @winners = @winners.where(ticket: { serial_number: params[:serial_number]}) if params[:serial_number].present?
-    @winners = @winners.where(users: { email: params[:email] }) if params[:email].present?
-    @winners = @winners.where(state: params[:state]) if params[:state].present?
+    if @winners.any?
+      @winners = @winners.order(created_at: :desc).page(params[:page]).per(10)
+    end
 
     if params[:search].present?
-      filtered_serial_number = @winners.where('serial_number LIKE :search', search: "%#{params[:search]}%")
-      @winners = filtered_serial_number if filtered_serial_number.present?
-
-      filtered_item_name = @winners.joins(:item).where("items.name LIKE :search", search: "%#{params[:search]}%")
-      @winners = filtered_item_name if filtered_item_name.present?
-
-      filtered_email = @winners.joins(:user).where("users.email LIKE :search", search: "%#{params[:search]}%")
-      @winners = filtered_email if filtered_email.present?
+      @winners = @winners.joins(:user, :ticket).where("users.email LIKE :search OR tickets.serial_number LIKE :search", search: "%#{params[:search]}%")
     end
 
     if params[:start_date].present? && params[:end_date].present?
@@ -35,50 +25,57 @@ class Admin::WinnersController < ApplicationController
     end
   end
 
-  def claim
-    @winner.claim! if @winner.may_claim?
-    redirect_to admin_winners_path
-  end
-
-  def submit
-
-    @winner.submit! if @winner.may_submit?
-    redirect_to admin_winners_path
-  end
-
-  def pay
-
-    @winner.pay! if @winner.may_pay?
-    redirect_to admin_winners_path
-  end
-
-  def ship
-
-    @winner.ship! if @winner.may_ship?
-    redirect_to admin_winners_path
-  end
-
-  def deliver
-    @winner.deliver! if @winner.may_deliver?
-    redirect_to admin_winners_path
-  end
-
-  def publish
-
-    @winner.publish! if @winner.may_publish?
-    redirect_to admin_winners_path
-  end
-
-  def share
-
-    @winner.share! if @winner.may_share?
-    redirect_to admin_winners_path
-  end
-
-  def remove_publish
-
-    @winner.remove_publish! if @winner.may_remove_publish?
-    redirect_to admin_winners_path
+  def update
+    if params[:commit] && params[:commit] == 'Submit'
+      if @winner.submit!
+        flash[:notice] = 'Winning item submitted.'
+        redirect_to admin_winners_path
+      else
+        flash[:alert] = @winner.errors.full_messages
+        redirect_to admin_winners_path
+      end
+    elsif params[:commit] && params[:commit] == 'Pay'
+      @winner.admin = current_admin_user
+      if @winner.pay!
+        flash[:notice] = 'Winning item paid.'
+        redirect_to admin_winners_path
+      else
+        flash[:alert] = @winner.errors.full_messages
+        redirect_to admin_winners_path
+      end
+    elsif params[:commit] && params[:commit] == 'Ship'
+      if @winner.ship!
+        flash[:notice] = 'Winning item shipped.'
+        redirect_to admin_winners_path
+      else
+        flash[:alert] = @winner.errors.full_messages
+        redirect_to admin_winners_path
+      end
+    elsif params[:commit] && params[:commit] == 'Deliver'
+      if @winner.deliver!
+        flash[:notice] = 'Winning item delivered.'
+        redirect_to admin_winners_path
+      else
+        flash[:alert] = @winner.errors.full_messages
+        redirect_to admin_winners_path
+      end
+    elsif params[:commit] && params[:commit] == 'Publish'
+      if @winner.publish!
+        flash[:notice] = 'Winning item published.'
+        redirect_to admin_winners_path
+      else
+        flash[:alert] = @winner.errors.full_messages
+        redirect_to admin_winners_path
+      end
+    elsif params[:commit] && params[:commit] == 'Remove Publish'
+      if @winner.remove_publish!
+        flash[:notice] = 'Winning item unpublished.'
+        redirect_to admin_winners_path
+      else
+        flash[:alert] = @winner.errors.full_messages
+        redirect_to admin_winners_path
+      end
+    end
   end
 
   private
