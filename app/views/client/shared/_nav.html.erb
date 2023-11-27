@@ -82,7 +82,7 @@
         <%= link_to "Lottery", lottery_index_path, class: "nav-link" %>
       </div>
       <div class="col">
-        Shop
+        <%= link_to "shop", shop_index_path, class: "nav-link" %>
       </div>
       <div class="col">
         <%= link_to 'Me', me_path, class: 'nav-link' if client_user_signed_in? %>

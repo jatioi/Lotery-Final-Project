@@ -1,0 +1,28 @@
+<%= render partial: 'client/shared/nav' %>
+
+<div class="container ">
+
+
+  <div class="position-absolute top-50 start-50 translate-middle   ">
+    <div class="card" style="width: 400px; height: 400px">
+      <% if @offer.present? %>
+        <img class="card-img-top img-fluid p-2 border" src="<%= @offer.image&.url %>" alt="Item Image">
+        <div class="card-body ">
+          <span class="badge rounded-pill bg-warning text-dark mb-0">sale</span>
+          <h3 class="card-title text-center"><%= @offer.name %></h3>
+          <h4 class="p-3  bg-light text-danger fw-bolder ">Amount: <%= @offer.amount %></h4>
+      <% else %>
+        <p>Offer not found</p>
+      <% end %>
+      </div>
+    </div>
+    <div class="justify-content-center m-auto text-center ">
+    <%= form_with url: '', method: :post, class: 'mb-2' do |f| %>
+      <%= f.hidden_field :offer, value: @offer.id %>
+      <%= f.submit 'Purchase', class: ' btn btn-success m-auto w-50 mt-2' %>
+    <% end %>
+    </div>
+  </div>
+</div>
+
+

@@ -1,0 +1,25 @@
+<%= render partial: 'client/shared/nav' %>
+
+<div class="container mb-5">
+  <%= render partial: 'client/shared/carousel' %>
+
+
+  <section class="d-flex flex-column justify-content-center align-items-center w-100">
+    <div class="row row-cols-2 w-100 mt-2 p-0">
+      <% @offers.each do |offer| %>
+        <div class="col mb-4 mt-2">
+          <div class="card h-100 w-100">
+            <%= link_to shop_path(offer) do %>
+              <%= image_tag offer.image.url, style: 'object-fit: cover;', class: 'w-100 h-100' if offer.image.present? %>
+            <% end %>
+            <div class="card-body d-flex flex-column justify-content-center">
+              <h5 class="card-title text-center"><%= offer.name %></h5>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </section>
+</div>
+
+
