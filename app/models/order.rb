@@ -1,6 +1,4 @@
 class Order < ApplicationRecord
-  validates :amount, presence: true
-  validates :coin, presence: true
   validates :coin, presence: true, if: :deposit_genre?
   validates :amount, presence: true, if: :deposit_genre?
   validates :amount, numericality: { greater_than: 0 }, if: -> { deposit_genre? && amount.present? }

@@ -17,8 +17,8 @@
       </div>
     </div>
     <div class="justify-content-center m-auto text-center ">
-    <%= form_with url: '', method: :post, class: 'mb-2' do |f| %>
-      <%= f.hidden_field :offer, value: @offer.id %>
+    <%= form_with url: purchase_index_path, method: :post, class: 'mb-2' do |f| %>
+      <%= f.hidden_field :offer_id, value: @offer.id %>
       <%= f.submit 'Purchase', class: ' btn btn-success m-auto w-50 mt-2' %>
     <% end %>
     </div>

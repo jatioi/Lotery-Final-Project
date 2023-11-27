@@ -51,6 +51,7 @@ Rails.application.routes.draw do
     resources 'client/lottery', as: 'lottery', path: 'lottery', only: [:index, :show, :create]
     resources 'client/tickets', as: 'submit_tickets', path: 'submit_tickets', only: [:create]
     resources 'client/shop', as: 'shop', path: 'shop', only: [:index, :show]
+    resources 'client/shop', as: 'purchase', path: 'shop', only: [:create]
 
   end
 
