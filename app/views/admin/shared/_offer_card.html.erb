@@ -1,0 +1,16 @@
+<div class="card border m-1" style="width: 250px; min-height: 250px">
+  <%= image_tag offer.image.url, class: 'card-img-top mt-2 ', style: 'object-fit: cover; height: 150px;' if offer.image.present? %>
+  <div class="card-body">
+    <h5 class="card-title"><%= offer.name %></h5>
+  </div>
+
+  <ul class="list-group list-group-flush font-monospace"><p class="card-text"></p>
+    <li class="list-group-item">Status = <%= offer.status %></li>
+    <li class="list-group-item"><small>Coins: <%= offer.coin %></small></li>
+    <%= link_to 'edit', admin_offer_path(offer), class: 'btn btn-primary btn-sm w-100 mb-2' %>
+    <%= button_to 'Delete', admin_offer_path(offer), method: :delete, data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' }, class: "btn btn-danger btn-sm w-100 mb-2" %>
+
+  </ul>
+
+</div>
+

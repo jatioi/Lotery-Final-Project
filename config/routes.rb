@@ -28,9 +28,10 @@ Rails.application.routes.draw do
           patch :remove_publish
         end
       end
+      resources :offers, except: :show
+
 
     end
-
   end
 
   constraints(ClientDomainConstraint.new) do
