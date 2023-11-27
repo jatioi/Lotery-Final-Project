@@ -7,7 +7,7 @@
   <ul class="list-group list-group-flush font-monospace"><p class="card-text"></p>
     <li class="list-group-item">Status = <%= offer.status %></li>
     <li class="list-group-item"><small>Coins: <%= offer.coin %></small></li>
-    <%= link_to 'edit', admin_offer_path(offer), class: 'btn btn-primary btn-sm w-100 mb-2' %>
+    <%= link_to 'edit', edit_admin_offer_path(offer), class: 'btn btn-primary btn-sm w-100 mb-2' %>
     <%= button_to 'Delete', admin_offer_path(offer), method: :delete, data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' }, class: "btn btn-danger btn-sm w-100 mb-2" %>
 
   </ul>
