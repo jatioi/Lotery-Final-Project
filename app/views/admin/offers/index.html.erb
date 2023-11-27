@@ -10,7 +10,18 @@
         <%= link_to 'Add new item', new_admin_offer_path, class: 'btn btn-primary' %>
       </div>
 
-      <div class="w-100 border-bottom my-2"></div>
+      <%= form_with(url: admin_offers_path, method: :get, class: 'mb-3') do |f| %>
+
+          <div class="w-25">
+            <%= f.label :status, class: 'form-label' %>
+            <%= f.select :status, Offer.statuses.keys.map { |s| [s.humanize, s] }, { include_blank: true }, class: 'form-select' %>
+          </div>
+        <div class="">
+        <%= f.submit 'Search', class: 'btn btn-primary' %>
+        </div>
+      <% end %>
+
+
 
       <% if @offers.present? %>
         <div class="row row-cols-*">
