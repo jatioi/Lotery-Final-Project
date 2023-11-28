@@ -29,6 +29,7 @@ Rails.application.routes.draw do
         end
       end
       resources :offers, except: :show
+      resources :orders, except: :show
 
 
     end

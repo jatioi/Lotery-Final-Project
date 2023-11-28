@@ -22,6 +22,7 @@ class Client::ShopController < ApplicationController
     end
 
     if @order.save
+      @order.submit! if @order.may_submit?
       flash[:notice] = 'Created order.'
       redirect_to shop_index_path
     else
