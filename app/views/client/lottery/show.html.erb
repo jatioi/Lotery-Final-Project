@@ -14,11 +14,17 @@
   <div class="card w-100 mt-2 mb-2">
     <%= image_tag @item.image.url, class: 'card-img-top w-100' %>
     <div class="card-body">
-      <h4><%= @item.name %></h4>
-      <div class="progress mt-2">
-        <div class="progress-bar" role="progressbar" style="width: <%= @progress %>%;" aria-valuenow="<%= @progress %>" aria-valuemin="0" aria-valuemax="100"><%= @progress %>%</div>
+      <p class="card-text"><%= @item.name %></p>
+      <div class="progress">
+        <% progress_percentage = [@progress_percentage, 100].min %> <!-- Ensure it doesn't exceed 100% -->
+        <% progress_percentage = progress_percentage.to_i %> <!-- Remove decimal points -->
+        <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar"
+             aria-valuenow="<%= progress_percentage %>" aria-valuemin="0" aria-valuemax="100" style="width: <%= progress_percentage.to_s + '%' %>;">
+          <%= progress_percentage.to_s + '%' %>
+        </div>
       </div>
     </div>
+
   </div>
 
   <%= form_with url: submit_tickets_path, method: :post, class: 'mb-2' do |f| %>

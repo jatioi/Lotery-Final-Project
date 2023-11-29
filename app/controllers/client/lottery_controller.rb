@@ -18,7 +18,8 @@ class Client::LotteryController < ApplicationController
   def show
     @ticket = Ticket.new
     @user = current_client_user
-    @progress_percentage = (Ticket.where(batch_count: @item.batch_count).count.to_f / @item.minimum_tickets) * 100
+    tickets_bought = Ticket.where(batch_count: @item.batch_count).count
+    @progress_percentage = (tickets_bought.to_f / @item.minimum_tickets) * 100
   end
 
   def search
