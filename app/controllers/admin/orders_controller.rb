@@ -1,4 +1,7 @@
 class Admin::OrdersController < ApplicationController
+  before_action :authenticate_admin_user!
+  before_action :set_order, only: [:cancel, :pay]
+
 
   def index
     @orders = Order.all
