@@ -22,3 +22,14 @@
   <%= link_to 'Invitation History', invite_history_index_path, class: "btn btn-outline-primary #{"active" if controller_name == 'client/me/invites'}", style: 'width: 200px' %>
 </div>
 
+
+<div class="container">
+  <% if @winnings.present? %>
+    <% @winnings.each do |winning| %>
+      <%= render partial: 'winning_card', locals: { winning: winning } %>
+    <% end %>
+  <% else %>
+   Unable to retrieve data
+  <% end %>
+
+</div>

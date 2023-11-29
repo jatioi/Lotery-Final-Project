@@ -22,3 +22,14 @@
   <%= link_to 'Invitation History', invite_history_index_path, class: "btn btn-outline-primary #{"active" if controller_name == 'client/me/invites'}", style: 'width: 200px' %>
 </div>
 
+
+<div class="container">
+  <% if @invites.present? %>
+    <% @invites.each do |invite| %>
+      <%= render partial: 'invites_card', locals: { invite: invite } %>
+    <% end %>
+  <% else %>
+   no invites
+  <% end %>
+
+</div>
