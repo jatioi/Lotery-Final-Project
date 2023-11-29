@@ -1,28 +1,27 @@
-<div class="col">
-  <div class="card border m-1" style="min-width: 250px; min-height: 250px" >
-    <%= image_tag item.image.url, class: 'card-img-top', style: 'object-fit: cover; max-height: 150px;' if item.image.present? %>
-    <div class="card-body">
-      <h5 class="card-title"><%= item.name %></h5>
-    </div>
-
-    <ul class="list-group list-group-flush font-monospace"><p class="card-text"></p>
-      <li class="list-group-item">Quantity = <%= item.quantity %></li>
-      <li class="list-group-item">Status = <%= item.status.humanize %></li>
-      <li class="list-group-item">created at: <%= item.created_at %></li>
-      <li class="list-group-item">Batch_count: <%= item.batch_count %></li>
-      <li class="list-group-item">Category: <%= item.categories.pluck(:name).join(', ') %></li>
-      <li class="list-group-item">Online_at:  <%= item.online_at&.strftime("%m/%d/%Y") %></li>
-      <li class="list-group-item">Offline at:<%= item.offline_at&.strftime("%m/%d/%Y") %></li>
-      <li class="list-group-item">Start at:<%= item.start_at&.strftime("%m/%d/%Y") %></li>
-      <li class="list-group-item"><small>State: <%= item.state.humanize %></small></li>
-      <%= form_with model: item, url: admin_item_path(item), method: :patch do |f| %>
-        <%= f.submit 'Start', class: 'btn btn-sm btn-success w-100 mb-2' if item.may_start? %>
-        <%= f.submit 'Pause', class: 'btn btn-sm btn-warning w-100 mb-2' if item.may_pause? %>
-        <%= f.submit 'End', class: 'btn btn-sm btn-primary w-100 mb-2' if item.may_end? %>
-        <%= f.submit 'Cancel', class: 'btn btn-sm btn-danger w-100 mb-2' if item.may_cancel? %>
-      <% end %>
-      <%= link_to 'Show', admin_item_path(item), class: 'btn btn-primary btn-sm w-100 mb-2' %>
-
-    </ul>
+<div class="card border m-1" style="width: 250px; min-height: 250px">
+  <%= image_tag item.image.url, class: 'card-img-top mt-2', style: 'object-fit: cover; height: 150px;' if item.image.present? %>
+  <div class="card-body">
+    <h5 class="card-title"><%= item.name %></h5>
   </div>
+
+  <ul class="list-group list-group-flush font-monospace"><p class="card-text"></p>
+    <li class="list-group-item">Quantity = <%= item.quantity %></li>
+    <li class="list-group-item">Status = <%= item.status.humanize %></li>
+    <li class="list-group-item">created at: <%= item.created_at %></li>
+    <li class="list-group-item">Batch_count: <%= item.batch_count %></li>
+    <li class="list-group-item">Category: <%= item.categories.pluck(:name).join(', ') %></li>
+    <li class="list-group-item">Online_at:  <%= item.online_at&.strftime("%m/%d/%Y") %></li>
+    <li class="list-group-item">Offline at:<%= item.offline_at&.strftime("%m/%d/%Y") %></li>
+    <li class="list-group-item">Start at:<%= item.start_at&.strftime("%m/%d/%Y") %></li>
+    <li class="list-group-item"><small>State: <%= item.state.humanize %></small></li>
+    <%= form_with model: item, url: admin_item_path(item), method: :patch do |f| %>
+      <%= f.submit 'Start', class: 'btn btn-sm btn-success w-100 mb-2' if item.may_start? %>
+      <%= f.submit 'Pause', class: 'btn btn-sm btn-warning w-100 mb-2' if item.may_pause? %>
+      <%= f.submit 'End', class: 'btn btn-sm btn-primary w-100 mb-2' if item.may_end? %>
+      <%= f.submit 'Cancel', class: 'btn btn-sm btn-danger w-100 mb-2' if item.may_cancel? %>
+    <% end %>
+    <%= link_to 'Show', admin_item_path(item), class: 'btn btn-primary btn-sm w-100 mb-2' %>
+
+  </ul>
 </div>
+
