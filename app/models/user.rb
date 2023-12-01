@@ -15,6 +15,7 @@ class User < ApplicationRecord
   has_many :tickets
   has_many :winners
   has_many :orders
+  has_many :winning_items, class_name: 'Winner', foreign_key: 'user_id'
 
   scope :with_children_total_deposit, -> {
     joins("LEFT JOIN users AS children ON children.parent_id = users.id")

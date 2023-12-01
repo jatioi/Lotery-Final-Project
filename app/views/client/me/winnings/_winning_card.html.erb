@@ -10,7 +10,7 @@
     <div class="d-flex flex-column h-100 me-2">
       <span>Item: <%= winning.item.name %></span>
       <span>Batch count: <%= winning.item_batch_count %></span>
-      <span>Address: <%= full_address(winning.address) %> </span>
+      <span>Address: <%= winning.address.present? ? full_address(winning.address) : 'None' %> </span>
     </div>
   </div>
 </div>
