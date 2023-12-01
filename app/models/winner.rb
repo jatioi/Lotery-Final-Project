@@ -2,7 +2,7 @@ class Winner < ApplicationRecord
   belongs_to :item
   belongs_to :ticket
   belongs_to :user
-  belongs_to :address
+  belongs_to :address, optional: true
   belongs_to :admin, class_name: 'User', foreign_key: 'admin_id', optional: true
 
   # AASM states

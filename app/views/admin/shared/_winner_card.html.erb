@@ -19,7 +19,7 @@
       </div>
     </div>
 
-    <%= form_tag winner_path(winner), method: :patch, data: {turbo: false} do %>
+    <%= form_tag admin_winner_path(winner), method: :patch, data: {turbo: false} do %>
       <%= submit_tag 'Submit', class:'btn btn-sm btn-danger' if winner.may_submit? %>
       <%= submit_tag 'Pay', class:'btn btn-sm btn-danger' if winner.may_pay? %>
       <%= submit_tag 'Ship', class:'btn btn-sm btn-danger' if winner.may_ship? %>
