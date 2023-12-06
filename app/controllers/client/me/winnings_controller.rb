@@ -1,6 +1,6 @@
 class Client::Me::WinningsController < ApplicationController
   before_action :authenticate_client_user!
-  before_action :set_winning, only: [:claim, :update, :edit, :edit_share, :update_share]
+  before_action :set_winning, except: :index
   def index
     @winnings = current_client_user.winning_items
   end
