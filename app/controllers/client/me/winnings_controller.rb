@@ -16,7 +16,7 @@ class Client::Me::WinningsController < ApplicationController
 
   def update
     # render json: winning_params
-    if @winning.update(winning_params)
+    if @winning.update(state: 'claimed', address_id: winning_params[:address_id])
       flash[:notice] = 'Prize claimed successfully.'
       redirect_to winning_history_index_path
     else

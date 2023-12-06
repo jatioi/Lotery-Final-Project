@@ -4,6 +4,8 @@
   <div class="d-flex flex-row align-items-center">
     <%= link_to 'Back', winning_history_index_path, class: "btn btn-primary me-2"%>
     <span class="fs-3 fw-semibold">Address for claiming prize</span>
+    <%= link_to 'Add Address', address_index_path, class: "btn btn-primary me-2"%>
+
   </div>
 
   <%= render partial: 'form', locals: { winning: @winning, url: winning_history_path, method: :patch }%>
