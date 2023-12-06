@@ -57,7 +57,7 @@ Rails.application.routes.draw do
         patch 'update_share', to: 'client/me/winnings#update_share', as: 'update_share'
       end
     end
-    resources 'client/me/orders', as: 'order_history', path: 'me/orders', only: :index
+    resources 'client/me/orders', as: 'order_history', path: 'me/orders', only: [:index, :update]
     resources 'client/me/lotteries', as: 'lottery_history', path: 'me/lotteries', only: :index
     resources 'client/me/winnings', as: 'winning_history', path: 'me/winnings', only: :index
     resources 'client/me/invites', as: 'invite_history', path: 'me/invites', only: :index
