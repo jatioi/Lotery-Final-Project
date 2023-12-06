@@ -32,7 +32,7 @@ class Admin::TicketsController < ApplicationController
       @ticket.cancel!
     end
 
-    redirect_to tickets_path
+    redirect_to admin_tickets_path
   end
 
   private

@@ -18,8 +18,10 @@
       </div>
     </div>
 
-    <%= form_tag admin_tickets_path(ticket), method: :patch, data: {turbo: false} do %>
-      <%= submit_tag 'Cancel', class:'btn btn-sm btn-danger' %>
+    <% if ticket.may_cancel? %>
+      <%= form_tag admin_ticket_path(ticket), method: :patch, data: { turbo: false } do %>
+        <%= submit_tag 'Cancel', class: 'btn btn-sm btn-danger' %>
+      <% end %>
     <% end %>
   </div>
 </div>
