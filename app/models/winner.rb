@@ -1,4 +1,5 @@
 class Winner < ApplicationRecord
+  mount_uploader :picture, ImageUploader
   belongs_to :item
   belongs_to :ticket
   belongs_to :user

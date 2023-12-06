@@ -1,0 +1,10 @@
+<%= render partial: 'client/shared/nav' %>
+
+<div class="container mt-4 mb-5">
+  <div class="d-flex flex-row align-items-center">
+    <%= link_to 'Back', winning_history_index_path, class: "btn btn-primary me-2"%>
+    <span class="fs-3 fw-semibold">Address for claiming prize</span>
+  </div>
+
+  <%= render partial: 'form_share', locals: { winning: @winning, url: update_share_winning_history_path(@winning), method: :patch }%>
+</div>
