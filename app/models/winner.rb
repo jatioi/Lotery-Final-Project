@@ -11,7 +11,7 @@ class Winner < ApplicationRecord
   aasm column: 'state' do
     state :won, initial: true
     state :claimed, :submitted
-    state :paid,:shipped,:delivered,:shared,:published,:remove_published
+    state :paid, :shipped, :delivered, :shared, :published, :remove_published
 
     event :claim do
       transitions from: :won, to: :claimed
@@ -46,6 +46,10 @@ class Winner < ApplicationRecord
     end
   end
 
+  private
 
+  def has_address?
+    address.present?
+  end
 
 end

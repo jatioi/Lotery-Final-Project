@@ -1,0 +1,15 @@
+<!-- winnings/claim.html.erb -->
+<%= form_with(model: @winning, url: winning_history_path(@winning), method: :patch) do |f| %>
+  <!-- Display other winning details -->
+
+
+  <div class="mb-3 mt-2">
+    <%= f.label :address_id, 'Address' %>
+    <%= f.collection_radio_buttons(:address_id, @addresses, :id, proc { |address| full_address(address) }) do |b| %>
+      <%= b.label { b.radio_button + b.text } %>
+    <% end %>
+  </div>
+
+
+  <%= f.submit 'Claim Prize', class: 'btn btn-primary' %>
+<% end %>

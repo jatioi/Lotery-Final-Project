@@ -14,6 +14,7 @@ class Address < ApplicationRecord
   }
   validates :remark, presence: true
 
+
   belongs_to :user
   belongs_to :region
   belongs_to :province

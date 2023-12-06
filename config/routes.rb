@@ -48,17 +48,21 @@ Rails.application.routes.draw do
     get "/me", to: 'client/me#index'
     get "/invite", to: 'client/invite#index'
 
+
     resources 'client/address', as: 'address', path: 'address', except: [:show, :edit]
     resources 'client/lottery', as: 'lottery', path: 'lottery', only: [:index, :show, :create]
     resources 'client/tickets', as: 'submit_tickets', path: 'submit_tickets', only: [:create]
     resources 'client/shop', as: 'shop', path: 'shop', only: [:index, :show]
     resources 'client/shop', as: 'purchase', path: 'shop', only: [:create]
+    resources 'client/me/winnings', as: 'winning_history', path: 'me/winnings', only: [:index, :update] do
+      member do
+        get 'claim_prize', to: 'client/me/winnings#edit', as: 'claim_prize'
+      end
+    end
     resources 'client/me/orders', as: 'order_history', path: 'me/orders', only: :index
     resources 'client/me/lotteries', as: 'lottery_history', path: 'me/lotteries', only: :index
     resources 'client/me/winnings', as: 'winning_history', path: 'me/winnings', only: :index
     resources 'client/me/invites', as: 'invite_history', path: 'me/invites', only: :index
-
-
 
   end
 

@@ -24,12 +24,13 @@
 
 
 <div class="container">
+
   <% if @winnings.present? %>
     <% @winnings.each do |winning| %>
       <%= render partial: 'winning_card', locals: { winning: winning } %>
     <% end %>
   <% else %>
-   Unable to retrieve data
+    Unable to retrieve data
   <% end %>
 
 </div>
