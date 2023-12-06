@@ -15,6 +15,6 @@
     <span class="d-flex justify-content-end w-50 h-50">
       <%= link_to (winning.won? ? 'Claim' : 'Claimed'), claim_prize_winning_history_path(winning), class: "btn btn-primary h-100 #{'disabled' unless winning.won?}", method: :patch %>
       <%= link_to "#{winning.delivered? ? 'Share' : 'Shared'}", share_prize_winning_history_path(winning),
-                  class: "btn btn-primary h-100 #{'disabled' unless winning.delivered?}" if winning.delivered? || winning.shared? || winning.published? || winning.remove_published? %></span>
+                  class: "btn btn-warning h-100 ms-2 #{'disabled' unless winning.delivered?}" if winning.delivered? || winning.shared? || winning.published? || winning.remove_published? %></span>
   </div>
 </div>
