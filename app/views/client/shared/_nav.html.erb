@@ -73,7 +73,7 @@
   <div class="container d-flex flex-row " style="width: 1000px">
     <div class="row align-items-center m-auto w-100 font-monospace " style="font-size: 20px; ">
       <div class="col">
-        Share
+        <%= link_to 'Share', shares_path, class: 'nav-link' if client_user_signed_in? %>
       </div>
       <div class="col">
         <%= link_to "Invite", invite_path, class: "nav-link" %>
@@ -87,6 +87,7 @@
       <div class="col">
         <%= link_to 'Me', me_path, class: 'nav-link' if client_user_signed_in? %>
       </div>
+
     </div>
   </div>
 </nav>

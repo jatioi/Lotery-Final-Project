@@ -61,6 +61,7 @@ Rails.application.routes.draw do
     resources 'client/me/lotteries', as: 'lottery_history', path: 'me/lotteries', only: :index
     resources 'client/me/winnings', as: 'winning_history', path: 'me/winnings', only: :index
     resources 'client/me/invites', as: 'invite_history', path: 'me/invites', only: :index
+    resources 'client/shares', as: 'shares', path: 'shares', only: :index
   end
 
   namespace :api do
